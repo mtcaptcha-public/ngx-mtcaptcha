@@ -51,6 +51,10 @@ export function buildMTCaptchaConfig(options: Partial<MTCaptchaOptions>): Record
     config['customStyle'] = parseJson(options.customStyle);
   }
 
+  if (options.customFonts) {
+    config['customFonts'] = options.customFonts;
+  }
+
   if (options.customAccessibilityText) {
     config['customAccessibilityText'] = parseJson(options.customAccessibilityText);
   }

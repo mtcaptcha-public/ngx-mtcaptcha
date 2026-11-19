@@ -102,6 +102,7 @@ export class AppModule { }
 | `loadAnimation` | `boolean` | No | `true` | Show the loading animation (set to `false` with invisible captcha) |
 | `customLangText` | `Record<string, any> \| string` | No | - | Custom language text (JSON object or JSON string) |
 | `customStyle` | `Record<string, any> \| string` | No | - | Custom styling (JSON object or JSON string) |
+| `customFonts` | `MTCaptchaCustomFonts` | No | - | Default font family and custom font files for the widget |
 | `customAccessibilityText` | `Record<string, MTCaptchaAccessibilityText> \| string` | No | - | Custom aria texts for screen readers, keyed by language code (JSON object or JSON string) |
 
 #### Language
@@ -129,6 +130,25 @@ visible challenge is shown:
 
 Use `lowFrictionInvisible="force-visible"` on workflows that must always show a challenge (e.g. registration),
 and `MTCaptchaService.getStatus()?.isVisible` to know whether the captcha is currently visible.
+
+#### Custom fonts
+
+```typescript
+customFonts = {
+  defaultFontFamily: 'Inter, sans-serif',
+  fonts: [
+    {
+      family: 'Inter',
+      url: 'https://example.com/fonts/Inter.woff2',
+      format: 'woff2',
+    },
+  ],
+};
+```
+
+```html
+<ng-mtcaptcha [sitekey]="sitekey" [customFonts]="customFonts"></ng-mtcaptcha>
+```
 
 #### Accessibility
 
@@ -238,6 +258,7 @@ interface MTCaptchaOptions {
   callbackName?: string;
   customLangText?: Record<string, any> | string;  // JSON object or JSON string
   customStyle?: Record<string, any> | string;       // JSON object or JSON string
+  customFonts?: MTCaptchaCustomFonts;               // Default font family and custom font files
   customAccessibilityText?: Record<string, MTCaptchaAccessibilityText> | string;  // Aria texts keyed by language code
   renderedCallback?: string;                       // Custom rendered callback name (default: 'mt_renderedcb')
   verifiedCallback?: string;                       // Custom verified callback name (default: 'mt_verifiedcb')
