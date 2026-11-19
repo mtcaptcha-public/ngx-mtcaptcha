@@ -1,5 +1,23 @@
 export type MTCaptchaWidgetSize = 'mini' | 'standard';
 
+export type MTCaptchaFontFormat = 'woff2' | 'woff' | 'truetype' | 'opentype';
+
+export interface MTCaptchaCustomFontFace {
+  /** CSS font-family name, for example `Inter`. */
+  family: string;
+  /** URL of the font file. */
+  url: string;
+  /** Font file format. */
+  format: MTCaptchaFontFormat;
+}
+
+export interface MTCaptchaCustomFonts {
+  /** Font stack applied across widget elements, for example `sans-serif` or `Arial`. */
+  defaultFontFamily?: string;
+  /** Font files the widget may load. */
+  fonts?: MTCaptchaCustomFontFace[];
+}
+
 /**
  * Accessibility (aria) texts for one language, grouped by widget state.
  * Each value is limited to 90 characters by MTCaptcha.
@@ -48,6 +66,7 @@ export interface MTCaptchaOptions {
   callbackName?: string;
   customLangText?: Record<string, any> | string;  // JSON object or JSON string
   customStyle?: Record<string, any> | string;      // JSON object or JSON string
+  customFonts?: MTCaptchaCustomFonts;  // Default font family and custom font files
   customAccessibilityText?: Record<string, MTCaptchaAccessibilityText> | string;  // Keyed by language code, JSON object or JSON string
   renderedCallback?: string;
   verifiedCallback?: string;

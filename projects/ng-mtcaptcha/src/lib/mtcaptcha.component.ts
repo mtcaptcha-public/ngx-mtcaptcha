@@ -13,7 +13,7 @@ import {
 import { Subscription } from 'rxjs';
 import { MTCaptchaService } from './mtcaptcha.service';
 import { buildMTCaptchaConfig } from './mtcaptcha.config';
-import { MTCaptchaAccessibilityText, MTCaptchaWidgetSize } from './mtcaptcha.types';
+import { MTCaptchaAccessibilityText, MTCaptchaCustomFonts, MTCaptchaWidgetSize } from './mtcaptcha.types';
 
 @Component({
   selector: 'ng-mtcaptcha',
@@ -40,6 +40,7 @@ export class MTCaptchaComponent implements AfterViewInit, OnDestroy {
   @Input() loadAnimation?: boolean;
   @Input() customLangText?: Record<string, any> | string;
   @Input() customStyle?: Record<string, any> | string;
+  @Input() customFonts?: MTCaptchaCustomFonts;
   @Input() customAccessibilityText?: Record<string, MTCaptchaAccessibilityText> | string;
   
   @Output() token = new EventEmitter<string>();
@@ -154,6 +155,7 @@ export class MTCaptchaComponent implements AfterViewInit, OnDestroy {
         loadAnimation: this.loadAnimation,
         customLangText: this.customLangText,
         customStyle: this.customStyle,
+        customFonts: this.customFonts,
         customAccessibilityText: this.customAccessibilityText,
       }),
       // Set callbacks to use service callbacks
